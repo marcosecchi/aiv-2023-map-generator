@@ -13,16 +13,18 @@ namespace MapTools
     public class WangTile
     {
         private int _value;
-        private WangTileInfo _info;
 
         public WangTile(int value, WangTileInfo info = null)
         {
             value = Mathf.Clamp(value, 0, 15);
             _value = value;
-            _info = info;
+            Info = info;
         }
 
-        public WangTileInfo Info => _info;
+    //    public WangTileInfo Info => _info;
+        public int Value => _value;
+
+        public WangTileInfo Info { get; set; }
 
         public bool HasDoor(DoorDirection direction)
         {

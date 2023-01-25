@@ -56,7 +56,6 @@ namespace MapTools
                     var go = Instantiate(_mapAr[col, row].Info);
                     go.transform.SetParent(container);
                     go.transform.position = new Vector3(col * spacing, 0, row * spacing);
-
                 }
             }
         }

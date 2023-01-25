@@ -60,9 +60,9 @@ namespace MapTools
             GUI.enabled = (_container != null) && (_mapGenerator != null);
             if (GUILayout.Button("Generate"))
             {
-                EditorUtility.DisplayProgressBar("Map Generation", "Generating map", 0);
+//                EditorUtility.DisplayProgressBar("Map Generation", "Generating map", 0);
                 _mapGenerator.Generate(_container, _width, _height);
-                EditorUtility.ClearProgressBar();
+//                EditorUtility.ClearProgressBar();
             }
 
             if (_container == null)
@@ -77,12 +77,9 @@ namespace MapTools
             GUI.enabled = (_container != null) && _container.childCount > 0;
             if (GUILayout.Button("Clear All"))
             {
-                EditorUtility.DisplayProgressBar("Map Generation", "Cleaning up the map container", 0);
-                while (_container.childCount> 0)
-                {
-                    DestroyImmediate(_container.GetChild(0).gameObject);
-                }
-                EditorUtility.ClearProgressBar();
+     //           EditorUtility.DisplayProgressBar("Map Generation", "Cleaning up the map container", 0);
+                _container.DestroyAllChildrenImmediate();
+     //           EditorUtility.ClearProgressBar();
             }
         }
 
