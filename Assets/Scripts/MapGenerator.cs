@@ -33,7 +33,7 @@ namespace MapTools
             _width = EditorGUILayout.IntSlider(
                                 "Width",
                                 _width,
-                                2,
+                                1,
                                 100);
             _height = EditorGUILayout.IntSlider(
                                 "Height",
@@ -81,11 +81,6 @@ namespace MapTools
                 _container.DestroyAllChildrenImmediate();
      //           EditorUtility.ClearProgressBar();
             }
-        }
-
-        private void Generate()
-        {
-        
         }
     }
 }

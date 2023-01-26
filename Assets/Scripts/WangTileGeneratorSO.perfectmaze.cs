@@ -65,6 +65,7 @@ namespace MapTools
                         break;
                 }
                 _visited.Add(newPos);
+                Debug.Log(newPos);
                 _mapAr[newPos.x, newPos.y] = newTile;
             }
         }
