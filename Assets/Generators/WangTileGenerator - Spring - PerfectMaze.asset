@@ -15,5 +15,5 @@ MonoBehaviour:
   folderPath: WangTiles/Spring/Tile
   spacing: 2
   generationType: 2
-  selectionPercent: 0.5
-  method: 0
+  selectionPercent: 0.214
+  method: 3

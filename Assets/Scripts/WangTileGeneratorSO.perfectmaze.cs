@@ -6,7 +6,11 @@ namespace MapTools
 {
     public enum SelectionMethod
     {
-        AlwayFirst
+        AlwayFirst,
+        AlwayLast,
+        FirstPercentSelection,
+        LastPercentSelection,
+        Random
     }
     
     public partial class WangTileGeneratorSO : AbstractTileGeneratorSO
@@ -29,7 +33,6 @@ namespace MapTools
             while (_visited.Count > 0)
             {
                 pos = _visited[GetVisitedElement(method)];
-
                 var possibleDirections = GetAvailableExits(pos, width, height);
                 if (possibleDirections.Length == 0)
                 {
@@ -65,7 +68,6 @@ namespace MapTools
                         break;
                 }
                 _visited.Add(newPos);
-                Debug.Log(newPos);
                 _mapAr[newPos.x, newPos.y] = newTile;
             }
         }
@@ -86,7 +88,7 @@ namespace MapTools
             {
                 directions.Add(DoorDirection.South);
             }
-            if(pos.y > height - 1 && _mapAr[pos.x, pos.y + 1] == null)
+            if(pos.y < height - 1 && _mapAr[pos.x, pos.y + 1] == null)
             {
                 directions.Add(DoorDirection.North);
             }
@@ -94,11 +96,22 @@ namespace MapTools
             return directions.ToArray();
         }
         
-        private int GetVisitedElement(SelectionMethod method)
+        private int GetVisitedElement(SelectionMethod selMethod)
         {
-            // TODO: Switch on selection methods
+            switch (selMethod)
+            {
+                case SelectionMethod.AlwayFirst:
+                    return 0;
+                case SelectionMethod.AlwayLast:
+                    return _visited.Count - 1;
+                case SelectionMethod.FirstPercentSelection:
+                    return Random.Range(0, 1f) < selectionPercent ? 0 : Random.Range(0, _visited.Count);
+                case SelectionMethod.LastPercentSelection:
+                    return Random.Range(0, 1f) < selectionPercent ? _visited.Count - 1 : Random.Range(0, _visited.Count);
+                default:
+                    return Random.Range(0, _visited.Count);
+            }
             
-            return 0;
         }
     }
 }
