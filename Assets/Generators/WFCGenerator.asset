@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1099442839a7c4d9e4c03d20068206, type: 3}
   m_Name: WFCGenerator
   m_EditorClassIdentifier: 
+  folderPath: WFC/
+  spacing: 2
+  sampleAsset: {fileID: 4900000, guid: f390fd5f60ca58f42bd6edb0cce9bdc2, type: 3}

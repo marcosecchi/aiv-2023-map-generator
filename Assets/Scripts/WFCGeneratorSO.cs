@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using DeBroglie;
 using DeBroglie.Models;
 using DeBroglie.Topo;
@@ -17,7 +15,9 @@ namespace MapTools
         public float spacing = 2;
 
         private WFCTile[,] _mapAr;
-        
+
+        public TextAsset sampleAsset;
+
         public override void Generate(Transform container, int width, int height)
         {
             if (string.IsNullOrEmpty(folderPath))
@@ -71,15 +71,24 @@ namespace MapTools
         
         private ITopoArray<string> GetSample()
         {
-            /*** TEMPORANEO ***/
-            ITopoArray<string> sample = TopoArray.Create(new []
+            var str = sampleAsset.text;
+            var rows = str.Split('\n');
+            var rowNum = rows.Length;
+            var colNum = rows[0].Split(',').Length;
+            string[,] ar = new string[colNum, rowNum];
+            
+            for (var y = 0; y < rows.Length; y++)
             {
-                new []{"roc", "wat", "wat"},
-                new []{"wat", "roc", "wat"},
-                new []{"wat", "wat", "wat"}
-            }, periodic: false);
-            /********************/
-
+                var row = rows[y];
+                var cols = row.Split(',');
+                for (var x = 0; x < cols.Length; x++)
+                {
+                    Debug.Log(x + " - " + y);
+                    ar[x, y] = cols[x];
+                }
+            }
+            
+            var sample = TopoArray.Create(ar, periodic: false);
             return sample;
         }
     }
