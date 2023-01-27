@@ -26,7 +26,7 @@ namespace MapTools
         {
             _visited = new List<Vector2Int>();
 
-            var pos = new Vector2Int(0, 0);
+            var pos = new Vector2Int(Random.Range(0, width), Random.Range(0, height));
             _mapAr[pos.x, pos.y] = new WangTile(4);
             _visited.Add(pos);
 
