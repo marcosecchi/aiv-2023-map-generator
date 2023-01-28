@@ -64,7 +64,7 @@ namespace MapTools
                 for (var col = 0; col < width; col++)
                 {
                     var go = Instantiate(_mapAr[col, row].Prefab, container);
-                    go.transform.position = new Vector3(col * spacing, 0, row * spacing);
+                    go.transform.localPosition = new Vector3(col * spacing, 0, row * spacing);
                 }
             } 
         }
